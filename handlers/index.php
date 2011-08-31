@@ -26,7 +26,7 @@ if ($wiki->error || (isset ($this->params[1]) && $this->params[1] == 'edit')) {
 				'body' => $_POST['body']
 			));
 		} else {
-			$wiki->id = $_POST['id'];
+			$wiki->id = str_replace (' ', '-', $_POST['id']);
 			$wiki->body = $_POST['body'];
 		}
 		$wiki->put ();
