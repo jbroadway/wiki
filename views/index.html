@@ -1,0 +1,43 @@
+<style>
+pre {
+	display: inline;
+}
+code {
+	border: 1px solid #ddd;
+	background: #fff;
+	color: #000;
+	border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	padding: 2px;
+}
+pre>code {
+	display: block;
+	padding: 2px 3px 2px 4px;
+	margin-bottom: 16px;
+}
+blockquote {
+	margin-left: 16px;
+	padding-left: 5px;
+	color: #666;
+	font-style: italic;
+	border-left: 5px solid #ccc;
+}
+</style>
+
+<div class="grid_9 alpha">
+{{ body|none }}
+</div>
+
+<div class="grid_1">&nbsp;</div>
+
+<div class="grid_2 omega">
+<p><a href="/wiki/New-page">New page</a><br />
+<a href="/wiki/{{id}}/edit">Edit this page</a><br />
+<a href="/admin/versions?type=Wiki&id={{id}}">Version history</a></p>
+<hr />
+<h6>All Pages</h6>
+{! wiki/pages !}
+</div>
+
+<div class="clear"></div>
