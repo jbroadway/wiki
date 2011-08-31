@@ -13,6 +13,7 @@ if (isset ($this->params[0])) {
 }
 
 require_once ('apps/wiki/lib/markdown.php');
+require_once ('apps/wiki/lib/Functions.php');
 
 $title = str_replace ('-', ' ', $id);
 
@@ -50,7 +51,7 @@ $page->title = $title;
 echo $tpl->render ('wiki/index', array (
 	'id' => $id,
 	'title' => $title,
-	'body' => Markdown ($wiki->body)
+	'body' => wiki_parse_links (Markdown ($wiki->body))
 ));
 
 ?>

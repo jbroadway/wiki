@@ -4,7 +4,8 @@ $page->template = 'wiki/preview';
 $page->layout = false;
 
 require_once ('apps/wiki/lib/markdown.php');
+require_once ('apps/wiki/lib/Functions.php');
 
-echo Markdown ($_POST['body']);
+echo wiki_parse_links (Markdown ($_POST['body']));
 
 ?>
