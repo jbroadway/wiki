@@ -1,10 +1,6 @@
 <?php
 
-$page->layout = 'admin';
-
-if (! User::require_admin ()) {
-	$this->redirect ('/admin');
-}
+$page->layout = $appconf['Wiki']['layout'];
 
 if (isset ($this->params[0])) {
 	$id = $this->params[0];
@@ -16,6 +12,13 @@ require_once ('apps/wiki/lib/markdown.php');
 require_once ('apps/wiki/lib/Functions.php');
 
 $title = str_replace ('-', ' ', $id);
+
+$editable = false;
+if ($appconf['Wiki']['edit_level'] == 'member' && User::require_login ()) {
+	$editable = true;
+} elseif ($appconf['Wiki']['edit_level'] == 'admin' && User::require_admin ()) {
+	$editable = true;
+}
 
 $wiki = new Wiki ($id);
 if ($wiki->error || (isset ($this->params[1]) && $this->params[1] == 'edit')) {
@@ -52,7 +55,8 @@ $page->title = $title;
 echo $tpl->render ('wiki/index', array (
 	'id' => $id,
 	'title' => $title,
-	'body' => wiki_parse_html (wiki_parse_links (Markdown ($wiki->body)))
+	'body' => wiki_parse_html (wiki_parse_links (Markdown ($wiki->body))),
+	'editable' => $editable
 ));
 
 ?>

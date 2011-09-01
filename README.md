@@ -1,8 +1,9 @@
-This is a basic wiki app written for the [Elefant CMS](http://github.com/jbroadway/elefant).
+This is a simple wiki app written for the [Elefant CMS](http://github.com/jbroadway/elefant).
 To install, simply unzip it into your apps folder, and you'll
 see "Wiki (click to install)" appear in the Elefant Tools menu.
-Click that to complete the installation and afterwards you'll
-be able to edit your private wiki under Tools > Wiki.
+Click that to complete the installation. Afterwards you'll
+be able to edit your wiki under Tools > Wiki as a site admin,
+or at the URL `/wiki`.
 
 Features include:
 
@@ -12,8 +13,4 @@ Features include:
 * Version control
 * Internal links via [[page name]]
 * Code syntax highlighting
-* Private only (for now)
-
-To do:
-
-* Public-facing wikis (members-only editing)
+* Member or admin-only edit levels

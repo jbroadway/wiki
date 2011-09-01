@@ -17,10 +17,12 @@ $(function () {
 			}
 		}
 	});
+	$('.notice').hide ();
 	{% foreach failed %}
 	$('#{{ loop_value }}-notice').show ();
 	{% end %}
 
+	$('#extra-options').hide ();
 	wiki_interval = setInterval (function () {
 		if ($('#extra-options').css ('display') == 'none') {
 			return;

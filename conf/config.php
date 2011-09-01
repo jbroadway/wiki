@@ -1,5 +1,11 @@
 ; <?php
 
+[Wiki]
+
+edit_level = admin
+;edit_level = member
+layout = default
+
 [Admin]
 
 handler = wiki/index
