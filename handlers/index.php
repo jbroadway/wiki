@@ -26,11 +26,11 @@ if ($wiki->error || (isset ($this->params[1]) && $this->params[1] == 'edit')) {
 	if ($f->submit ()) {
 		if ($wiki->error) {
 			$wiki = new Wiki (array (
-				'id' => str_replace (' ', '-', $_POST['id']),
+				'id' => str_replace (' ', '-', trim ($_POST['id'])),
 				'body' => $_POST['body']
 			));
 		} else {
-			$wiki->id = str_replace (' ', '-', $_POST['id']);
+			$wiki->id = str_replace (' ', '-', trim ($_POST['id']));
 			$wiki->body = $_POST['body'];
 		}
 		$wiki->put ();

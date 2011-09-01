@@ -1,8 +1,49 @@
+<style>
+#wiki-body {
+	font: 13px monospace;
+	width: 620px;
+}
+#extra-options {
+	display: none;
+}
+
+	.extra-options-link {
+		color: #333;
+		text-decoration: none;
+	}
+
+	.extra-options-link:hover {
+		color: #333;
+		text-decoration: none;
+	}
+
+	.arrow {
+		display: block;
+		float: left;
+		width: 16px;
+		height: 20px;
+		margin-top: 3px;
+		padding-right: 5px;
+		background-image: url(/apps/admin/css/admin/arrow-down.png);
+		background-repeat: no-repeat;
+		background-position: 50% 50%;
+	}
+
+	.arrow-off {
+		background-image: url(/apps/admin/css/admin/arrow-right.png) !important;
+		background-repeat: no-repeat;
+		background-position: 50% 50%;
+	}
+</style>
+<script type="text/javascript" src="/apps/wiki/js/jquery.fieldselection.js"></script>
+<script type="text/javascript" src="/apps/wiki/js/jquery.textarea.js"></script>
 <script type="text/javascript" src="/js/jquery.verify_values.js"></script>
 <script type="text/javascript">
 var wiki_interval, wiki_last_preview = '';
 
 $(function () {
+	$('textarea').tabby ();
+
 	$('#edit-form').verify_values ({
 		handler: 'wiki/edit',
 		callback: function (failed) {
@@ -52,12 +93,26 @@ function wiki_preview (link) {
 	}
 	return false;
 }
+function wiki_insert_link () {
+	var body = $('#wiki-body'),
+		sel = body.getSelection ();
+
+	if (sel.text.length == 0) {
+		body.replaceSelection ('[[page name]]');
+		body.focus ().setSelection (sel.start + 2, sel.start + 11);
+	} else {
+		body.replaceSelection ('[[' + sel.text + ']]');
+		body.focus ().setSelection (sel.start + sel.text.length + 4, sel.start + sel.text.length + 4);
+	}
+	return false;
+}
 </script>
 
 <form method="POST" id="edit-form">
 <p>Page ID:<br /><input type="text" name="id" size="50" value="{{ id }}" />
 <span class="notice" id="id-notice">You must enter a page ID.</span></p>
-<p>Body (use <a href="http://daringfireball.net/projects/markdown/syntax" target="_blank">Markdown</a> for formatting): <span class="notice" id="body-notice">You must enter body content.</span><br />
+<p>Body (Formatting: <a href="http://daringfireball.net/projects/markdown/syntax" target="_blank">Markdown</a>,
+Internal Links: <a href="#" onclick="return wiki_insert_link ()"><code>[[page name]]</code></a>): <span class="notice" id="body-notice">You must enter body content.</span><br />
 <textarea name="body" id="wiki-body" cols="85" rows="28">{{ body }}</textarea></p>
 <h5><a href="#" onclick="return wiki_preview (this)" class="extra-options-link"><span class="arrow arrow-off"></span>{"Preview"}</a></h5>
 <div id="extra-options">

@@ -46,11 +46,16 @@ $(function ($) {
 
 {% if editable %}
 <p id="wiki-links">
-<a href="/wiki/New-page">New page</a> |
-<a href="/wiki/{{id}}/edit">Edit page</a>
+<a href="/wiki//edit">{"New page"}</a> |
+<a href="/wiki/{{id}}/edit">{"Edit page"}</a>
 {% if User::require_admin () %} |
-<a href="/admin/versions?type=Wiki&id={{id}}">Version history</a>
-{% end %}
+<a href="/admin/versions?type=Wiki&id={{id}}">{"Version history"}</a>
+{% end %} |
+<a href="/wiki/pages">{"All pages"}</a>
+</p>
+{% else %}
+<p id="wiki-links">
+<a href="/wiki/pages">{"All pages"}</a>
 </p>
 {% end %}
 
