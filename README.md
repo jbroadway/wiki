@@ -10,10 +10,10 @@ Features include:
 * Live preview
 * Sidebar navigation
 * Version control
+* Internal links via [[page name]]
+* Code syntax highlighting
 * Private only (for now)
 
 To do:
 
-* Internal links
 * Public-facing wikis (members-only editing)
-* Code syntax highlighting
