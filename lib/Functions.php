@@ -8,4 +8,12 @@ function wiki_parse_links ($body) {
 	);
 }
 
+function wiki_parse_html ($body) {
+	return str_replace (
+		'<pre><code>&lt;',
+		'<pre><code class="brush-html">&lt;',
+		$body
+	);
+}
+
 ?>

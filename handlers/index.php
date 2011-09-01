@@ -35,6 +35,7 @@ if ($wiki->error || (isset ($this->params[1]) && $this->params[1] == 'edit')) {
 		$this->redirect ('/wiki/' . $wiki->id);
 	} else {
 		$o = new StdClass;
+		$o->dashed = $id;
 		$o->id = $title;
 		$o->body = $wiki->body;
 		$o->failed = $f->failed;
@@ -51,7 +52,7 @@ $page->title = $title;
 echo $tpl->render ('wiki/index', array (
 	'id' => $id,
 	'title' => $title,
-	'body' => wiki_parse_links (Markdown ($wiki->body))
+	'body' => wiki_parse_html (wiki_parse_links (Markdown ($wiki->body)))
 ));
 
 ?>

@@ -11,7 +11,7 @@ code {
 	-webkit-border-radius: 2px;
 	padding: 2px;
 }
-pre>code {
+pre>code, div.syntax-container {
 	display: block;
 	padding: 2px 3px 2px 4px;
 	margin-bottom: 16px;
@@ -23,7 +23,26 @@ blockquote {
 	font-style: italic;
 	border-left: 5px solid #ccc;
 }
+div.syntax-container div.toolbar {
+	display: none;
+}
+div.syntax {
+	border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	background: #fff !important;
+}
 </style>
+<script>
+$(function ($) {
+	var syntax_root = '/apps/wiki/js/jquery-syntax/';
+	if ($('pre>code').length) {
+		$.getScript (syntax_root + 'jquery.syntax.min.js', function () {
+			$.syntax ({root: syntax_root, blockSelector: 'pre>code', blockLayout: 'plain'});
+		});
+	}
+});
+</script>
 
 <div class="grid_9 alpha">
 {{ body|none }}
