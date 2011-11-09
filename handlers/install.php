@@ -20,8 +20,15 @@ if ($cur === true) {
 
 $page->title = 'Installing app: wiki';
 
+if (ELEFANT_VERSION < '1.1.0') {
+	$driver = conf ('Database', 'driver');
+} else {
+	$conn = conf ('Database', 'master');
+	$driver = $conn['driver'];
+}
+
 $error = false;
-$sqldata = sql_split (file_get_contents ('apps/wiki/conf/install_' . conf ('Database', 'driver') . '.sql'));
+$sqldata = sql_split (file_get_contents ('apps/wiki/conf/install_' . $driver . '.sql'));
 foreach ($sqldata as $sql) {
 	if (! db_execute ($sql)) {
 		$error = db_error ();
