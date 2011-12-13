@@ -46,6 +46,7 @@ $(function ($) {
 
 {% if editable %}
 <p id="wiki-links">
+<a href="/wiki/Home">{"Home"}</a> |
 <a href="/wiki//edit">{"New page"}</a> |
 <a href="/wiki/{{id}}/edit">{"Edit page"}</a>
 {% if User::require_admin () %} |
@@ -55,6 +56,7 @@ $(function ($) {
 </p>
 {% else %}
 <p id="wiki-links">
+<a href="/wiki/Home">{"Home"}</a> |
 <a href="/wiki/pages">{"All pages"}</a>
 </p>
 {% end %}
