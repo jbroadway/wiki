@@ -55,7 +55,7 @@ $page->title = $title;
 echo $tpl->render ('wiki/index', array (
 	'id' => $id,
 	'title' => $title,
-	'body' => wiki_parse_html (wiki_parse_links (Markdown ($wiki->body))),
+	'body' => wiki_parse_body ($wiki->body),
 	'editable' => $editable
 ));
 

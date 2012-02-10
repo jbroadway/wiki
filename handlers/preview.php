@@ -6,6 +6,6 @@ $page->layout = false;
 require_once ('apps/wiki/lib/markdown.php');
 require_once ('apps/wiki/lib/Functions.php');
 
-echo wiki_parse_links (Markdown ($_POST['body']));
+echo wiki_parse_body ($_POST['body']);
 
 ?>
