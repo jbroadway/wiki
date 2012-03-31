@@ -2364,9 +2364,9 @@ class MarkdownExtra_Parser extends Markdown_Parser {
 		# Reading alignement from header underline.
 		$separators	= preg_split('/ *[|] */', $underline);
 		foreach ($separators as $n => $s) {
-			if (preg_match('/^ *-+: *$/', $s))		$attr[$n] = ' align="right"';
-			else if (preg_match('/^ *:-+: *$/', $s))$attr[$n] = ' align="center"';
-			else if (preg_match('/^ *:-+ *$/', $s))	$attr[$n] = ' align="left"';
+			if (preg_match('/^ *-+: *$/', $s))		$attr[$n] = ' style="text-align:right"';
+			else if (preg_match('/^ *:-+: *$/', $s))$attr[$n] = ' style="text-align:center"';
+			else if (preg_match('/^ *:-+ *$/', $s))	$attr[$n] = ' style="text-align:left"';
 			else									$attr[$n] = '';
 		}
 		
