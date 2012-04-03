@@ -22,6 +22,9 @@ if ($appconf['Wiki']['edit_level'] == 'member' && User::require_login ()) {
 
 $wiki = new Wiki ($id);
 if ($wiki->error || (isset ($this->params[1]) && $this->params[1] == 'edit')) {
+	if (! $editable) {
+		$this->redirect ('/wiki/Home');
+	}
 	$f = new Form ('post', 'wiki/edit');
 	if ($f->submit ()) {
 		if ($wiki->error) {
