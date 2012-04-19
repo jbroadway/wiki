@@ -37,7 +37,14 @@ if ($wiki->error || (isset ($this->params[1]) && $this->params[1] == 'edit')) {
 			$wiki->body = $_POST['body'];
 		}
 		$wiki->put ();
+
 		Versions::add ($wiki);
+
+		$hook = $wiki->orig ();
+		$hook->page = 'wiki/' . $wiki->id;
+		$hook->title = trim ($_POST['id']);
+		$this->hook ('wiki/edit', $hook);
+
 		$this->redirect ('/wiki/' . $wiki->id);
 	} else {
 		$o = new StdClass;
