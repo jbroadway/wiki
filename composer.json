@@ -1,7 +1,8 @@
 {
     "name": "elefant/app-wiki",
-    "description": "Wiki app for the Elefant CMS",
     "type": "elefant-app",
+    "description": "Wiki app for the Elefant CMS",
+    "keywords": ["wiki", "elefant", "cms", "app"],
     "license": "MIT",
     "repositories": [
         {"type": "git", "url": "http://github.com/jbroadway/elefant_installer"}
