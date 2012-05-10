@@ -4,6 +4,13 @@
     "description": "Wiki app for the Elefant CMS",
     "keywords": ["wiki", "elefant", "cms", "app"],
     "license": "MIT",
+	"authors": [
+		{
+			"name": "Johnny Broadway",
+			"email": "johnny@johnnybroadway.com",
+			"homepage": "http://www.johnnybroadway.com/"
+		}
+	],
     "repositories": [
         {"type": "git", "url": "http://github.com/jbroadway/elefant_installer"}
     ],
