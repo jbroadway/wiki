@@ -43,7 +43,7 @@ if ($wiki->error || (isset ($this->params[1]) && $this->params[1] == 'edit')) {
 		$hook = $wiki->orig ();
 		$hook->page = 'wiki/' . $wiki->id;
 		$hook->title = trim ($_POST['id']);
-		$hook->body = wiki_parse_body ($wiki->body);
+		$hook->body = $wiki->body;
 		$this->hook ('wiki/edit', $hook);
 
 		$this->redirect ('/wiki/' . $wiki->id);
@@ -51,11 +51,11 @@ if ($wiki->error || (isset ($this->params[1]) && $this->params[1] == 'edit')) {
 		$o = new StdClass;
 		$o->dashed = $id;
 		$o->id = $title;
-		$o->body = wiki_parse_body ($wiki->body);
+		$o->body = $wiki->body;
 		$o->failed = $f->failed;
 		$o = $f->merge_values ($o);
 
-		$page->title = i18n_get ('Edit Page');
+		$page->title = __ ('Edit Page');
 		echo $tpl->render ('wiki/edit', $o);
 		return;
 	}
