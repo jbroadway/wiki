@@ -7,15 +7,15 @@ $this->require_admin ();
 $cur = $this->installed ('wiki', $appconf['Admin']['version']);
 
 if ($cur === true) {
-	$page->title = 'Already installed';
-	echo '<p><a href="/">Home</a></p>';
+	$page->title = __ ('Already installed');
+	echo '<p><a href="/wiki/index">' . __ ('Home') . '</a></p>';
 	return;
 } elseif ($cur !== false) {
 	header ('Location: /' . $appconf['Admin']['upgrade']);
 	exit;
 }
 
-$page->title = 'Installing app: wiki';
+$page->title = __ ('Installing App') . ': ' . __ ('Wiki');
 
 if (ELEFANT_VERSION < '1.1.0') {
 	$driver = conf ('Database', 'driver');
@@ -29,18 +29,18 @@ $sqldata = sql_split (file_get_contents ('apps/wiki/conf/install_' . $driver . '
 foreach ($sqldata as $sql) {
 	if (! db_execute ($sql)) {
 		$error = db_error ();
-		echo '<p class="notice">Error: ' . db_error () . '</p>';
+		echo '<p class="notice">' . __ ('Error') . ': ' . db_error () . '</p>';
 		break;
 	}
 }
 
 if ($error) {
-	echo '<p class="notice">Error: ' . $error . '</p>';
-	echo '<p>Install failed.</p>';
+	echo '<p class="notice">' . __ ('Error') . ': ' . $error . '</p>';
+	echo '<p>' . __ ('Install failed.') . '</p>';
 	return;
 }
 
-echo '<p>Done.</p>';
+echo '<p><a href="/wiki/index">' . __ ('Done.') . '</p>';
 
 $this->mark_installed ('wiki', $appconf['Admin']['version']);
 
