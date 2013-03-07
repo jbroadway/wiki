@@ -5,7 +5,7 @@ $res = Wiki::query ('id')
 	->fetch_orig ();
 
 if (! $this->internal) {
-	$page->title = i18n_get ('All Pages');
+	$page->title = __ ('All Pages');
 }
 
 echo '<p>';
