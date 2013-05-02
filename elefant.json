@@ -2,7 +2,7 @@
     "type":         "app",
     "folder":       "wiki",
     "name":         "Wiki",
-    "version":      "0.9.0",
+    "version":      "0.9.1",
     "website":      "http://www.elefantcms.com/",
     "repository":   "git://github.com/jbroadway/wiki.git",
     "author": {

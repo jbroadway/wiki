@@ -4,6 +4,7 @@
     "description": "Wiki app for the Elefant CMS",
     "keywords": ["wiki", "elefant", "cms", "app"],
     "license": "MIT",
+    "version": "0.9.1-beta",
 	"authors": [
 		{
 			"name": "Johnny Broadway",
