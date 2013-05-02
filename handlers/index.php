@@ -11,14 +11,11 @@ if (isset ($this->params[0])) {
 require_once ('apps/wiki/lib/markdown.php');
 require_once ('apps/wiki/lib/Functions.php');
 
+$page->id = 'wiki';
+
 $title = str_replace ('-', ' ', $id);
 
-$editable = false;
-if ($appconf['Wiki']['edit_level'] == 'member' && User::require_login ()) {
-	$editable = true;
-} elseif ($appconf['Wiki']['edit_level'] == 'admin' && User::require_admin ()) {
-	$editable = true;
-}
+$editable = User::require_acl ('wiki/edit');
 
 $wiki = new Wiki ($id);
 if ($wiki->error || (isset ($this->params[1]) && $this->params[1] == 'edit')) {

@@ -5,6 +5,7 @@ $res = Wiki::query ('id')
 	->fetch_orig ();
 
 if (! $this->internal) {
+	$page->id = 'wiki';
 	$page->title = __ ('All Pages');
 }
 

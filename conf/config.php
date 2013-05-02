@@ -2,9 +2,18 @@
 
 [Wiki]
 
-edit_level = admin
-;edit_level = member
+; This is the title for the wiki in the site navigation.
+
+title = Wiki
+
+; This is the layout to use for the wiki pages.
+
 layout = default
+
+; Whether to include this app in the list of pages
+; available to the Tools > Navigation tree.
+
+include_in_nav = On
 
 [Admin]
 
