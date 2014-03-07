@@ -21,6 +21,33 @@ class Wiki extends Model {
 		}
 		return $urls;
 	}
+
+	/**
+	 * Generate a list of pages for the search app,
+	 * and add them directly via `Search::add()`.
+	 */
+	public static function search () {
+		require_once ('apps/wiki/lib/markdown.php');
+		require_once ('apps/wiki/lib/Functions.php');
+
+		$pages = self::query ()
+			->fetch_orig ();
+		
+		foreach ($pages as $i => $page) {
+			$url = 'wiki/' . $page->id;
+			if (! Search::add (
+				'wiki/' . $page->id,
+				array (
+					'title' => str_replace ('-', ' ', $page->id),
+					'text' => wiki_parse_body ($page->body),
+					'url' => '/wiki/' . $page->id
+				)
+			)) {
+				return array (false, $i);
+			}
+		}
+		return array (true, count ($pages));
+	}
 }
 
 ?>

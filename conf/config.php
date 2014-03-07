@@ -23,5 +23,6 @@ install = wiki/install
 upgrade = wiki/upgrade
 version = 0.9.1-beta
 sitemap = "Wiki::sitemap"
+search = "Wiki::search"
 
 ; */ ?>
