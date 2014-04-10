@@ -22,6 +22,18 @@ if ($wiki->error || (isset ($this->params[1]) && $this->params[1] == 'edit')) {
 	if (! $editable) {
 		$this->redirect ('/wiki/Home');
 	}
+
+	if ($id) {
+		$lock = new Lock ('Wiki', $id);
+		if ($lock->exists ()) {
+			$page->title = __ ('Editing Locked');
+			echo $tpl->render ('wiki/locked', $lock->info ());
+			return;
+		} else {
+			$lock->add ();
+		}
+	}
+
 	$f = new Form ('post', 'wiki/edit');
 	if ($f->submit ()) {
 		if ($wiki->error) {
@@ -36,6 +48,9 @@ if ($wiki->error || (isset ($this->params[1]) && $this->params[1] == 'edit')) {
 		$wiki->put ();
 
 		Versions::add ($wiki);
+		if ($lock) {
+			$lock->remove ();
+		}
 
 		$hook = $wiki->orig ();
 		$hook->page = 'wiki/' . $wiki->id;

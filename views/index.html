@@ -41,6 +41,32 @@ $(function ($) {
 			$.syntax ({root: syntax_root, blockSelector: 'pre>code', blockLayout: 'plain'});
 		});
 	}
+	
+	$('#wiki-delete').click (function (e) {
+		e.preventDefault ();
+		
+		if (! confirm ("{'Are you sure you want to delete this page?'}")) {
+			return false;
+		}
+		
+		var $el = $(this),
+			params = $el.data (),
+			url = $el.attr ('href'),
+			$form = $('<form>')
+				.attr ('method', 'post')
+				.attr ('action', url);
+		
+		$.each (params, function (name, value) {
+			$('<input type="hidden">')
+				.attr ('name', name)
+				.attr ('value', value)
+				.appendTo ($form);
+		});
+		
+		$form.appendTo ('body');
+		$form.submit ();
+		return false;
+	});
 });
 </script>
 
@@ -49,6 +75,9 @@ $(function ($) {
 <a href="/wiki/Home">{"Home"}</a> |
 <a href="/wiki//edit">{"New page"}</a> |
 <a href="/wiki/{{id}}/edit">{"Edit page"}</a>
+{% if User::require_acl ('wiki/delete') %} |
+<a href="/wiki/delete" data-page="{{id}}" id="wiki-delete">{"Delete page"}</a>
+{% end %}
 {% if User::require_admin () %} |
 <a href="/admin/versions?type=Wiki&id={{id}}">{"Version history"}</a>
 {% end %} |

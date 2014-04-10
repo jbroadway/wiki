@@ -120,6 +120,6 @@ function wiki_insert_link () {
 </div>
 <p>
 	<input type="submit" value="{"Save Page"}" /> &nbsp;
-	<a href="/wiki/{{ dashed }}" onclick="return confirm ('{"Are you sure you want to cancel and lose any changes?"}')">Cancel</a>
+	<a href="/wiki/cancel?id={{ dashed }}&return=/wiki/{{ dashed }}" onclick="return confirm ('{"Are you sure you want to cancel and lose any changes?"}')">Cancel</a>
 </p>
 </form>
